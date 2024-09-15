@@ -53,29 +53,37 @@ const Chat = () => {
 
   return (
     <div className="chat-container flex flex-col h-screen bg-gray-800">
-      <div className="header bg-blue-700 p-4 text-white text-lg font-semibold">
-        Room: {room}
+      <div className="bg-blue-700 p-4 items-center flex justify-between text-white text-lg font-semibold">
+        <span className='italic'>Talk Space</span>
+        <span> Room : {room}</span>
+        <button className='bg-red-600 py-2 px-1 text-sm rounded-md' >Leave Room</button>
       </div>
 
-      <div className="chat-window flex-grow p-4 overflow-y-auto bg-gray-800 ">
+      <div className="chat-window flex-grow p-4 overflow-y-auto bg-gray-800">
         {messages.map((msg, i) => (
-          <div key={i} className={`message ${msg.user === name ? 'self-message' : 'other-message'} p-2 my-2 rounded-lg`}>
-            <p className="user font-semibold text-white italic">{msg.user}</p>
-            <p className="text text-slate-200">{msg.text}</p>
+          <div 
+            key={i} 
+            className={`message flex p-2 my-2 rounded-lg  ${msg.user === name ? 'justify-end' : ' justify-start'} `}
+          >
+            <div className={`max-w-[80%] p-2 rounded-lg  ${msg.user === name ? ' text-white' : ' text-slate-200'}`}>
+              <p className={`user font-semibold italic flex ${msg.user === name ? ' justify-end' : 'justify-start'}`} >{msg.user === name ? 'You' : msg.user}</p>
+              <p className="text">{msg.text}</p>
+            </div>
           </div>
         ))}
       </div>
 
+
       <form className="message-input flex p-4 bg-gray-800" onSubmit={sendMessage}>
         <input
-          className="flex-grow p-2 rounded-md border border-gray-300 focus:outline-none"
+          className="flex-grow p-2  w-[50%] sm:w-[90%] rounded-md border border-gray-300 focus:outline-none"
           type="text"
           placeholder="Type your message..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyPress={(e) => (e.key === 'Enter' ? sendMessage(e) : null)}
         />
-        <button className="ml-2 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600" type="submit">
+        <button className="ml-2 p-2 sm:w-[10%] bg-blue-500 text-white rounded-md hover:bg-blue-600" type="submit">
           Send
         </button>
       </form>

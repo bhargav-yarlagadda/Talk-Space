@@ -24,7 +24,9 @@ app.use(cors());
 io.on('connect', (socket) => {
     socket.on('join', ({ name, room }, callback) => {
       const { error, user } = addUser({ id: socket.id, name, room });
+  
       if(error) return callback(error);
+
       socket.join(user.room);
   
       socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.`});
