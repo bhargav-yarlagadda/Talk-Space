@@ -38,8 +38,8 @@ Make sure you have the following installed on your local machine:
 1. **Clone the repository:**
 
    ```bash
-   git clone <repository-url>
-   cd <repository-name>
+   git clone https://github.com/bhargav-yarlagadda/Talk-Space
+   cd Talk-Space
 
 ### Server Setup
 
